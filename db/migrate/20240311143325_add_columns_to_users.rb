@@ -4,3 +4,4 @@ class AddColumnsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :username, :string
     add_column :users, :last_name, :string
   end
+end
