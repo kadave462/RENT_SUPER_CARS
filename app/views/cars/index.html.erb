@@ -1,1 +1,5 @@
-hello i am index
+<% @cars.each do |car| %>
+  <p><%= car.car_model %></p>
+  <p><%= car.car_brand %></p>
+  <p><%= car.price %></p>
+<% end %>

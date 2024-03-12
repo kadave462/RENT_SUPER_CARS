@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_flat, only: [:show, :edit, :update, :destroy]
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @cars = Car.all
@@ -11,8 +11,9 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    @car.user = current_user
     if @car.save
-      redirect_to cars_path
+      redirect_to car_path(@car)
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,12 +40,12 @@ class CarsController < ApplicationController
 
   private
 
-  def set_flat
-    @car = car.find(params[:id])
+  def set_car
+    @car = Car.find(params[:id])
   end
 
-  def flat_params
-    params.require(:car).permit(:name)
+  def car_params
+    params.require(:car).permit(:car_model,:car_brand,:price,:horse_power)
   end
 
 end
