@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Faker::Vehicle.make #=> "Honda"
+Faker::Vehicle.model(make_of_model: 'Toyota')
