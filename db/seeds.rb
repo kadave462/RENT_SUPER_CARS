@@ -14,7 +14,7 @@ User.destroy_all
 
 u1 = User.new(
   username: "admin",
-  email: Faker::Internet.email,
+  email: 'admin@email.com',
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   city: Faker::Address.city,
