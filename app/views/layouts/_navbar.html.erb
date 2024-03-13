@@ -1,3 +1,22 @@
   <nav class="navbar rounded-4 rounded-top-0 border border-2 border-black-subtitle" style="background-color: #ffffff;">
-    <h1 style="padding: 0px 10px">Rent-Super-Car</h1>
+    <div class="container d-flex justify-content-between">
+
+      <h1 style="padding: 0px 10px">
+        <%= link_to 'Rent Super Car', root_path %>
+      </h1>
+
+      <p class="align-self-center">
+        My bookings
+      </p>
+
+      <p class="align-self-center">
+        <% if user_signed_in? %>
+          <%= link_to current_user.username, account_path %>
+          (<%= link_to "logout", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure to log out ?"}%>)
+        <% else %>
+          <%= link_to "login", user_session_path %>
+        <% end %>
+      </p>
+
+    </div>
   </nav>
