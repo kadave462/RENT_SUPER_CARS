@@ -9,7 +9,7 @@
           <%= link_to "Delete", car_path(@car),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
           <%= link_to "edit",edit_car_path%>
         <%end%>
-          <%= link_to "reserve","#"%>
+          <%= link_to "reserve", new_car_booking_path(@car)%>
 
     </div>
   </div>
