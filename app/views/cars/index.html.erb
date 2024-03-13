@@ -1,25 +1,29 @@
-<div class="container">
-  <% @cars.each do |car| %>
-    <div class="card mt-2" style="width: 15rem;">
-      <%= link_to car_path(car) do %>
-        <div class="card-body">
-          <p>
-            <%= image_tag ("http://loremflickr.com/280/280/#{car.car_brand}#{car.car_model}"), class: "card-img-top" %>
-          </p>
-          <p>
-            <%= car.car_brand %>
-            <%= car.car_model %>
-          </p>
-          <p>
-            <%= car.price %>€/jour
-          </p>
-          <p>
-            <%= car.user.first_name %>
-            <%= car.user.last_name %>
-            (@<%= car.user.username %>)
-          </p>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+<div class="container ">
+  <div class="card-car">
+
+    <% @cars.each do |car| %>
+      <div class="card mt-2">
+        <%= link_to car_path(car) do %>
+          <div class="card-body">
+            <p>
+              <%= image_tag ("http://loremflickr.com/280/280/#{car.car_brand}#{car.car_model}"), class: "card-img-top" %>
+            </p>
+            <p>
+              <%= car.car_brand %>
+              <%= car.car_model %>
+            </p>
+            <p>
+              <%= car.price %>€/jour
+            </p>
+            <p>
+              <%= car.user.first_name %>
+              <%= car.user.last_name %>
+              (@<%= car.user.username %>)
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
 </div>
