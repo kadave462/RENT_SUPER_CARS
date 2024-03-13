@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>
+    Hello
+    <%= current_user.username %>
+    !
+  </h1>
+
+  <p>
+    <ul>
+      <li>
+        Your full name :
+        <%= current_user.first_name %>
+        <%= current_user.last_name %>
+      </li>
+      <li>
+        Your e-mail :
+        <%= current_user.email %>
+      </li>
+      <li>
+        Your city :
+        <%= current_user.city %>
+      </li>
+    </ul>
+    <%= link_to edit_user_registration_path %>
+  </p>
+
+  <h2>
+    Your bookings :
+  </h2>
+</div>
