@@ -11,6 +11,15 @@
       </p>
 
       <p class="align-self-center">
+        <%= link_to 'My Cars', mycars_path%>
+        <% if current_user.cars.any? %>
+          (<%= current_user.cars.count %> cars)
+        <% else %>
+          <p>you have 0 cars</p>
+        <% end %>
+      </p>
+
+      <p class="align-self-center">
         <% if user_signed_in? %>
           <%= link_to current_user.username, account_path %>
           (<%= link_to "logout", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure to log out ?"}%>)
