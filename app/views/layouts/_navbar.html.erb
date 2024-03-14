@@ -10,6 +10,16 @@
         <%= link_to 'Add a car', new_car_path %>
       </p>
 
+
+      <p class="align-self-center">
+        <%= link_to 'My Cars', mycars_path%>
+        <% if current_user.cars.any? %>
+          (<%= current_user.cars.count %> cars)
+        <% else %>
+          <p>you have 0 cars</p>
+        <% end %>
+      </p>
+
       <p class="align-self-center">
         <% if user_signed_in? %>
           <%= link_to current_user.username, account_path %>
