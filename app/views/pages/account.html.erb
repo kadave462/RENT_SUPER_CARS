@@ -41,13 +41,19 @@
             <li>Price/day : <%= booking.car.price %>€
             <li>Amount : <%= booking.booking_amount %>€</li>
             <li><% if booking.status == nil %>
-              Status : pending
+              Status : PENDING</li>
+              <%= link_to 'Decline', decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger'  %>
+              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
+              <%= link_to 'Accept', accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success'  %>
             <% elsif booking.status == true %>
-              Status : confirmed
+              Status : CONFIRMED</li>
+              <%= link_to 'Decline', decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger'  %>
+              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
             <% else booking.status == false %>
-              Status : declined
-            <% end %></li>
-            <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
+              Status : DECLINED</li>
+              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
+              <%= link_to 'Accept', accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success'  %>
+            <% end %>
           </ul>
       </div>
     <% end %>

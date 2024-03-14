@@ -22,6 +22,18 @@ class BookingsController < ApplicationController
     end
   end
 
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.update(status: true) if current_user.id == @booking.car.user_id
+    redirect_to account_path
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    @booking.update(status: false) if current_user.id == @booking.car.user_id
+    redirect_to account_path
+  end
+
   private
 
   def set_car
