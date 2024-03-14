@@ -22,6 +22,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
 
   def edit
@@ -49,5 +50,4 @@ class CarsController < ApplicationController
   def car_params
     params.require(:car).permit(:car_model,:car_brand,:price,:horse_power)
   end
-
 end

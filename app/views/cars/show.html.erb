@@ -1,16 +1,22 @@
-<div class="container margin-top-negative border">
-  <div class="row">
-    <div class="col-8">
-        <h1><%= @car.car_model %></h1>
-        <p><%= @car.car_brand%></p>
-        <p><%= @car.price%></p>
-        <p><%= @car.horse_power%></p>
-        <%if @car.user == current_user %>
-          <%= link_to "Delete", car_path(@car),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-          <%= link_to "edit",edit_car_path%>
-        <%end%>
-          <%= link_to "reserve", new_car_booking_path(@car)%>
-
-    </div>
+<div class="container border m-3 p-3">
+  <h1>
+    <%= @car.car_brand%>
+    <%= @car.car_model %>
+  </h1>
+  <%= image_tag ("http://loremflickr.com/280/280/#{@car.car_brand}#{@car.car_model}"), class: "card-img-top", style: 'width: 400px' %>
+  <div>
+    <%if @car.user == current_user %>
+      <%= link_to "Edit my car",edit_car_path%>
+      |
+      <%= link_to "Delete my car", car_path(@car),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    <%end%>
   </div>
+    <p><%= @car.price%>€ par jour</p>
+    <p><%= @car.horse_power%> hp</p>
 </div>
+
+<% if current_user.id != @car.user_id %>
+  <div class="container border m-3 p-3">
+    <%= render "bookings/form" %>
+  </div>
+<% end %>
