@@ -3,8 +3,13 @@ class CarsController < ApplicationController
   def mycars
     @usercars = current_user.cars
   end
+
   def index
-    @cars = Car.all
+    if user_signed_in?
+      @cars = Car.where.not(user_id: current_user.id)
+    else
+      @cars = Car.all
+    end
   end
 
   def new
