@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :cars do
     resources :bookings, only: [:index, :new, :create]
   end
+  resources :bookings, only: [:destroy]
   resources :bookings, only: [:show]
   get 'account', to: "pages#account"
   patch 'bookings/:id/accept', to: "bookings#accept", as: 'accept'
