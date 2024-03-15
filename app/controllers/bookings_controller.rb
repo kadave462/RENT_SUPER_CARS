@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
       end
     else
       render "cars/show", status: :unprocessable_entity
+      flash[:alert] = "You have to reserve over 2 days sir"
     end
   end
 
