@@ -43,7 +43,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    redirect_to cars_path, status: :see_other
+    redirect_to mycars_path, status: :see_other
   end
 
   private

@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_car, only: %i[new create]
+  before_action :set_booking, only: %i[show destroy accept decline]
 
   def show
-    @booking = Booking.find(params[:id])
   end
 
   def new
@@ -27,20 +27,18 @@ class BookingsController < ApplicationController
       flash[:alert] = "You have to reserve over 2 days sir"
     end
   end
+
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to cars_path
+    redirect_to account_path
   end
 
   def accept
-    @booking = Booking.find(params[:id])
     @booking.update(status: true) if current_user.id == @booking.car.user_id
     redirect_to account_path
   end
 
   def decline
-    @booking = Booking.find(params[:id])
     @booking.update(status: false) if current_user.id == @booking.car.user_id
     redirect_to account_path
   end
@@ -49,6 +47,10 @@ class BookingsController < ApplicationController
 
   def set_car
     @car = Car.find(params[:car_id])
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params

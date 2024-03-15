@@ -1,23 +1,21 @@
-<div class="container-fluid  d-flex justify-content-center mt-3">
+<div class="container-fluid mt-2">
   <div class="card-car gap-3">
 
-    <% @usercars.each do |mycar| %>
-      <div class="card rounded-4 rounded border border-2 border-black-subtitle col-sm-12" style="background-color: #ffffff;">
-        <%= link_to car_path(mycar) do %>
+    <% @usercars.each do |car| %>
+      <div class="card rounded-4 rounded border border-2 border-black-subtitle" style="background-color: #ffffff;">
+        <%= link_to car_path(car) do %>
           <div class="card-body">
             <p>
-              <%= image_tag ("http://loremflickr.com/280/280/#{mycar.car_brand}#{mycar.car_model}"), class: "card-img-top rounded-4" %>
+              <%= image_tag ("http://loremflickr.com/280/280/#{car.car_brand}#{car.car_model}"), class: "card-img-top rounded-4" %>
             </p>
             <p>
-              <%= mycar.car_brand %>
-              <%= mycar.car_model %>
-            <p>
-              <%= mycar.price %>€/jour
+              <strong>
+                <%= car.car_brand %>
+                <%= car.car_model %>
+              </strong>
             </p>
             <p>
-              <%= mycar.user.first_name %>
-              <%= mycar.user.last_name %>
-              (@<%= mycar.user.username %>)
+              <%= car.price %>€/day
             </p>
             <div class="button">
               <p><%= link_to "Details",car_path(mycar) %></p>
@@ -27,5 +25,10 @@
       </div>
     <% end %>
 
+  </div>
+  <div class="card rounded-4 my-2 rounded border border-2 border-black-subtitle p-1" style="background-color: #ffffff;">
+    <%= link_to new_car_path do %>
+      <i class="fa-solid fa-plus"></i> Add a car
+    <% end %>
   </div>
 </div>
