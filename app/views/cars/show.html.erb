@@ -4,18 +4,23 @@
     <%= @car.car_model %>
   </h1>
   <%= image_tag ("http://loremflickr.com/280/280/#{@car.car_brand}#{@car.car_model}"), class: "card-img-top", style: 'width: 400px' %>
-  <div class ="link-hover-red">
+    <div mt-2>
+      <p><strong><%= @car.price%>€ /jour</strong></p>
+      <p><strong><%= @car.horse_power%> hp</strong></p>
+    </div>
+  <div class ="d-flex mt-3">
     <%if @car.user == current_user %>
+      <div class = "button">
       <%= link_to "Edit my car", edit_car_path%>
-      |
+      </div>
+      <div class = button-delete>
       <%= link_to "Delete my car", car_path(@car),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+      </div>
     <%end%>
   </div>
-    <p><%= @car.price%>€ par jour</p>
-    <p><%= @car.horse_power%> hp</p>
 </div>
 
-<% if current_user.id != @car.user_id %>
+<% if current_user.id != @car.user.id %>
   <div class="container border m-3 p-3">
     <%= render "bookings/form" %>
   </div>
