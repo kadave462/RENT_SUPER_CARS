@@ -22,8 +22,11 @@
 
 <% if user_signed_in? %>
   <% if current_user.id != @car.user_id %>
-    <div class="container card border m-3 p-3">
-      <%= render "bookings/form" %>
+    <div data-controller="toggle" class="container card border m-3 p-3">
+      <button data-action="click->toggle#fire" class="btn btn-outline-primary">Reserve this car</button>
+      <div  data-toggle-target="togglableElement" class="d-none">
+        <%= render "bookings/form" %>
+      </div>
     </div>
   <% end %>
 <% end %>
