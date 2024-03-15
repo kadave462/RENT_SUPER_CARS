@@ -22,8 +22,10 @@
     <h4><%= @car.horse_power%> hp</h4>
 </div>
 
-<% if current_user.id != @car.user_id %>
-  <div class="container card border m-3 p-3">
-    <%= render "bookings/form" %>
-  </div>
+<% if user_signed_in? %>
+  <% if current_user.id != @car.user_id %>
+    <div class="container card border m-3 p-3">
+      <%= render "bookings/form" %>
+    </div>
+  <% end %>
 <% end %>
