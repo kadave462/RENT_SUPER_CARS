@@ -1,5 +1,10 @@
 <%= simple_form_for [@car, @booking] do |f| %>
-  <%= f.input :starting_date %>
-  <%= f.input :ending_date %>
+  <%= f.input :starting_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+
+  <%= f.input :ending_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
   <%= f.submit class: "btn btn-primary border rounded-pill" %>
 <% end %>
