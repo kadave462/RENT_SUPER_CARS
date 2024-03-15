@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
     @booking.car = @car
     @booking.user = current_user
     @booking_eligibility = (@booking.ending_date - @booking.starting_date) / (3600 * 24)
-    if @booking_eligibility > 1
+    if @booking_eligibility
       if @booking.save
         redirect_to car_path(@car)
         @booking.update!(booking_amount: @car.price * (@booking.ending_date - @booking.starting_date) / (3600 * 24))
