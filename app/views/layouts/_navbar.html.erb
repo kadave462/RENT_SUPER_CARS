@@ -1,22 +1,19 @@
-  <nav class="navbar rounded-4 rounded-top-0 border border-2 border-black-subtitle" style="background-color: #ffffff;">
+  <nav id="navbar" class="navbar rounded-4 rounded-top-0 border border-2 border-black-subtitle" style="background-color: #ffffff;">
     <div class="container d-flex justify-content-between">
 
       <h1 style="padding: 0px 10px">
         <%= link_to 'Rent Super Car', root_path %>
       </h1>
 
-      <p class="align-self-center">
-        <i class="fa-solid fa-plus"></i>
-        <%= link_to 'Add a car', new_car_path %>
-      </p>
-
       <% if user_signed_in? %>
         <p class="align-self-center">
-          <%= link_to 'My Cars', mycars_path%>
-          <% if current_user.cars.any? %>
-            (<%= current_user.cars.count %> cars)
-          <% else %>
-            <p>0 car</p>
+          <%= link_to mycars_path do %>
+            My garage
+            <% if current_user.cars.any? %>
+              (<%= current_user.cars.count %> cars)
+            <% else %>
+              <p>(0 car)</p>
+            <% end %>
           <% end %>
         </p>
       <% end %>

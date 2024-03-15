@@ -1,90 +1,112 @@
-<div class="container card mt-2 p-3">
-  <h1>
-    Hello
-    <%= current_user.username %>
-    !
-  </h1>
+<div class="container p-3  mx-auto">
 
-  <p>
-    <ul>
-      <li>
-        Your full name :
-        <%= current_user.first_name %>
-        <%= current_user.last_name %>
-      </li>
-      <li>
-        Your e-mail :
-        <%= current_user.email %>
-      </li>
-      <li>
-        Your city :
-        <%= current_user.city %>
-      </li>
-    </ul>
-    <%= link_to 'Edit profile', edit_user_registration_path, class: "btn btn-primary" %>
-  </p>
+<%# Card "user infos" %>
+  <div class="card p-3">
+    <h1>
+      Hello
+      <%= current_user.username %>
+      !
+    </h1>
 
-  <h2>
-    Bookings from your garage :
-  </h2>
-  <p>
-    <% @pending_bookings.each do |booking| %>
-      <div class="d-flex mt-3" style="height: 200px">
-        <%= image_tag ("http://loremflickr.com/280/280/#{booking.car.car_brand}#{booking.car.car_model}"), class: "" %>
-          <ul>
-            <li>
-              <%= booking.car.car_brand %>
-              <%= booking.car.car_model %>
-            </li>
-            <li>Du <%= booking.starting_date %>
-            <li>au <%= booking.ending_date %></li>
-            <li>Price/day : <%= booking.car.price %>€
-            <li>Amount : <%= booking.booking_amount %>€</li>
-            <li><% if booking.status == nil %>
-              Status : PENDING</li>
-              <%= link_to 'Decline', decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger'  %>
-              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
-              <%= link_to 'Accept', accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success'  %>
-            <% elsif booking.status == true %>
-              Status : CONFIRMED</li>
-              <%= link_to 'Decline', decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger'  %>
-              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
-            <% else booking.status == false %>
-              Status : DECLINED</li>
-              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
-              <%= link_to 'Accept', accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success'  %>
-            <% end %>
-          </ul>
-      </div>
-    <% end %>
-  </p>
+    <p>
+      <ul>
+        <li>
+          Your full name :
+          <%= current_user.first_name %>
+          <%= current_user.last_name %>
+        </li>
+        <li>
+          Your e-mail :
+          <%= current_user.email %>
+        </li>
+        <li>
+          Your city :
+          <%= current_user.city %>
+        </li>
+      </ul>
+    </p>
+    <p>
+      <%= link_to 'Edit my profile', edit_user_registration_path, class: "btn btn-primary" %>
+    </p>
+  </div>
 
-  <h2>
-    Your bookings :
-  </h2>
-  <p>
-    <% @user_bookings.each do |booking| %>
-      <div class="d-flex mt-3" style="height: 200px">
-        <%= image_tag ("http://loremflickr.com/280/280/#{booking.car.car_brand}#{booking.car.car_model}"), class: "" %>
-          <ul>
-            <li>
-              <%= booking.car.car_brand %>
-              <%= booking.car.car_model %>
-            </li>
-            <li>Du <%= booking.starting_date %>
-            <li>au <%= booking.ending_date %></li>
-            <li>Price/day : <%= booking.car.price %>€
-            <li>Amount : <%= booking.booking_amount %>€</li>
-            <li><% if booking.status == nil %>
-              Status : pending
-            <% elsif booking.status == true %>
-              Status : confirmed
-            <% else booking.status == false %>
-              Status : declined
-            <% end %></li>
-            <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
-          </ul>
-      </div>
-    <% end %>
-  </p>
+<%# Card "your garage bookings" %>
+  <div class="card p-3 my-3">
+    <h2>
+      Bookings from your garage :
+    </h2>
+
+    <p>
+      <% @pending_bookings.each do |booking| %>
+        <div class="d-flex mt-3" style="height: 200px">
+          <%= image_tag ("http://loremflickr.com/280/280/#{booking.car.car_brand}#{booking.car.car_model}"), class: "" %>
+            <ul>
+              <li>
+                <%= booking.car.car_brand %>
+                <%= booking.car.car_model %>
+              </li>
+              <li>Du <%= booking.starting_date %>
+              <li>au <%= booking.ending_date %></li>
+              <li>Price/day : <%= booking.car.price %>€
+              <li>Amount : <%= booking.booking_amount %>€</li>
+              <li ><% if booking.status == nil %>
+                Status : PENDING</li>
+                <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary' %>
+                <%= link_to accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success' do %>
+                  <i class="fa-solid fa-check"></i> Accept
+                <% end %>
+                <%= link_to decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger' do %>
+                  <i class="fa-solid fa-xmark"></i> Decline
+                <% end %>
+              <% elsif booking.status == true %>
+                Status : CONFIRMED</li>
+                <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary' %>
+                <%= link_to decline_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Decline ?' }, class: 'btn btn-danger' do %>
+                  <i class="fa-solid fa-xmark"></i> Decline
+                <% end %>
+              <% else booking.status == false %>
+                Status : DECLINED</li>
+                <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary' %>
+                <%= link_to accept_path(booking), data: { turbo_method: :patch, turbo_confirm: 'Accept ?' }, class: 'btn btn-success' do %>
+                  <i class="fa-solid fa-check"></i> Accept
+                <% end %>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+    </p>
+  </div>
+
+<%# Card "your bookings" %>
+  <div class="card p-3 my-3">
+    <h2>
+      Your bookings :
+    </h2>
+
+    <p>
+      <% @user_bookings.each do |booking| %>
+        <div class="d-flex mt-3" style="height: 200px">
+          <%= image_tag ("http://loremflickr.com/280/280/#{booking.car.car_brand}#{booking.car.car_model}"), class: "" %>
+            <ul>
+              <li>
+                <%= booking.car.car_brand %>
+                <%= booking.car.car_model %>
+              </li>
+              <li>Du <%= booking.starting_date %>
+              <li>au <%= booking.ending_date %></li>
+              <li>Price/day : <%= booking.car.price %>€
+              <li>Amount : <%= booking.booking_amount %>€</li>
+              <li><% if booking.status == nil %>
+                Status : pending
+              <% elsif booking.status == true %>
+                Status : confirmed
+              <% else booking.status == false %>
+                Status : declined
+              <% end %></li>
+              <%= link_to 'Details', booking_path(booking), class: 'btn btn-primary'  %>
+            </ul>
+        </div>
+      <% end %>
+    </p>
+  </div>
 </div>
