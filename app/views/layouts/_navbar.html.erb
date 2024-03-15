@@ -5,18 +5,19 @@
         <%= link_to 'Rent Super Car', root_path %>
       </h1>
 
-      <% if user_signed_in? %>
-        <p class="align-self-center">
-          <%= link_to mycars_path do %>
-            My garage
-            <% if current_user.cars.any? %>
-              (<%= current_user.cars.count %> cars)
-            <% else %>
-              <p>(0 car)</p>
+
+        <% if user_signed_in? %>
+          <p class="align-self-center">
+            <%= link_to mycars_path do %>
+              My garage
+              <% if current_user.cars.any? %>
+                (<%= current_user.cars.count %> cars)
+              <% else %>
+                (0 car)
+              <% end %>
             <% end %>
-          <% end %>
-        </p>
-      <% end %>
+          </p>
+        <% end %>
 
       <p class="align-self-center">
         <% if user_signed_in? %>
