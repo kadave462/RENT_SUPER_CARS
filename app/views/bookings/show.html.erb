@@ -1,8 +1,8 @@
-<div class="card container  mb-3 p-3 " style="max-width: 800px;">
+<div class="card container  mt-3 p-3" style="max-width: 800px;">
 
   <div class="row g-0">
     <div class="col-md-4">
-    <%= image_tag ("http://loremflickr.com/280/280/#{@booking.car.car_brand}#{@booking.car.car_model}"), class: "img-fluid rounded-start"%>
+    <%= image_tag ("http://loremflickr.com/280/280/#{@booking.car.car_brand}#{@booking.car.car_model}"), class: "img-fluid"%>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -12,8 +12,8 @@
         <p class="card-text">starts: <strong><%=@booking.starting_date%></strong></p>
         <p class="card-text">ends : <strong><%=@booking.ending_date%></strong></p>
         <p class="card-text">Total : <strong><%=@booking.booking_amount%> euros</strong></p>
-        <div class = "button-delete">
-          <%= link_to "Delete my reservation",booking_path(@booking),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+        <div class = "btn btn-danger">
+          <%= link_to "Delete my reservation", booking_path(@booking),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
         </div>
       </div>
     </div>
