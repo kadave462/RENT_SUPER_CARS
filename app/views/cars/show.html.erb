@@ -3,7 +3,12 @@
     <%= @car.car_brand%>
     <%= @car.car_model %>
   </h1>
-  <%= image_tag ("http://loremflickr.com/280/280/#{@car.car_brand}#{@car.car_model}"), class: "card-img-top", style: 'width: 400px' %>
+  <% if @car.photo.attached? %>
+      <%= cl_image_tag @car.photo.key, crop: :fill, style: 'object-fit: cover;' %>
+  <% else %>
+    <%= image_tag ("http://loremflickr.com/280/280/#{@car.car_brand}#{@car.car_model}"), class: "card-img-top", style: 'width: 400px' %>
+  <% end %>
+
     <div mt-2>
       <p><strong><%= @car.price%>€ /jour</strong></p>
       <p><strong><%= @car.horse_power%> hp</strong></p>
