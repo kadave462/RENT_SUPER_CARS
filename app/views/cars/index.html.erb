@@ -4,11 +4,11 @@
       <div class="card rounded-4 rounded border border-2 border-black-subtitle col-sm-12" style="background-color: #ffffff;">
         <%= link_to car_path(car) do %>
           <div class="card-body" >
-            <p class= "card-img-top" >
+            <p>
               <% if car.photo.attached? %>
-                <%= cl_image_tag car.photo.key, crop: :fill %>
+                <%= cl_image_tag car.photo.key, crop: :fill, class: "card-img-top"%>
               <% else %>
-                <%= image_tag ("http://loremflickr.com/280/280/#{car.car_brand}#{car.car_model}")%>
+                <%= image_tag ("http://loremflickr.com/280/280/#{car.car_brand}#{car.car_model}"), class: "card-img-top" %>
               <% end %>
             <p>
               <strong>
