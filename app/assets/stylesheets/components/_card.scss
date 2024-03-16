@@ -10,3 +10,19 @@
 .link-hover-red a:hover {
   color: red;
 }
+
+.twoColumns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.responsive {
+  max-width: 70%;
+  height: auto;
+}
+
+.right {
+  max-width: 100%;
+  margin-left: 28px;
+}
